@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog_deviceList</class>
+ <widget class="QDialog" name="Dialog_deviceList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>438</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>751</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>imei号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>版本号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>状态</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>时间</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>经纬度</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>GSM信号</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>MAXGSM</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>电压值</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>方向</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>速度</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton_ReadFile">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>377</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>读取IMEI列表</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_StartLoad">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>380</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>开始查询</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
