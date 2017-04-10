@@ -19,13 +19,15 @@ SOURCES += main.cpp\
     dialog_findlog.cpp \
     dialog_devicelog.cpp \
     dialog_devicelist.cpp \
-    dialog_baidumap.cpp
+    dialog_baidumap.cpp \
+    http_operate.cpp
 
 HEADERS  += mainwindow.h \
     dialog_findlog.h \
     dialog_devicelog.h \
     dialog_devicelist.h \
-    dialog_baidumap.h
+    dialog_baidumap.h \
+    http_operate.h
 
 FORMS    += mainwindow.ui \
     dialog_findlog.ui \

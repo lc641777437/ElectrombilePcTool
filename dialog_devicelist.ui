@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>438</height>
+    <width>808</width>
+    <height>448</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,15 @@
     <rect>
      <x>9</x>
      <y>9</y>
-     <width>751</width>
+     <width>791</width>
      <height>361</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="tabKeyNavigation">
+    <bool>true</bool>
    </property>
    <column>
     <property name="text">
@@ -76,10 +82,10 @@
   <widget class="QPushButton" name="pushButton_ReadFile">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>377</y>
-     <width>121</width>
-     <height>51</height>
+     <x>10</x>
+     <y>370</y>
+     <width>351</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -97,10 +103,10 @@
   <widget class="QPushButton" name="pushButton_StartLoad">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>380</y>
-     <width>121</width>
-     <height>51</height>
+     <x>400</x>
+     <y>370</y>
+     <width>401</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -113,6 +119,64 @@
    </property>
    <property name="text">
     <string>开始查询</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_DeriveFile">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>410</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>导出CSV文件</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_ClearData">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>410</y>
+     <width>401</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Agency FB</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>清除历史数据</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_ClearData">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>415</y>
+     <width>16</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

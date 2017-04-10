@@ -17,8 +17,8 @@ public:
 
 private:
     Ui::Dialog_baiduMap *ui;
-    double lat;
-    double lon;
+    double lat = 0.0;
+    double lon = 0.0;
 
 private slots:
     void baiduMapLoadFinish();
