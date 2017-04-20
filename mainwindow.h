@@ -3,10 +3,11 @@
 
 #include <QMainWindow>
 
+#define IMEI_LEN (15)
+
 namespace Ui {
 class MainWindow;
 }
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -32,6 +33,7 @@ private slots:
     void on_pushButton_SERVER_clicked();
     void on_pushButton_FindDeviceList_clicked();
     void on_tableWidget_deviceState_cellDoubleClicked(int row, int column);
+    void on_pushButton_SETMOTOR_clicked();
 };
 
 #endif // MAINWINDOW_H

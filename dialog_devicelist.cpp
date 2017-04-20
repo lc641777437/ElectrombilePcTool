@@ -78,7 +78,7 @@ void Dialog_deviceList::on_pushButton_ReadFile_clicked()
             int rowNum = ui->tableWidget->rowCount();
             ui->tableWidget->setRowCount(rowNum+1);
 
-            ui->tableWidget->setItem(rowNum, 0, new QTableWidgetItem(line));
+            ui->tableWidget->setItem(rowNum, 0, new QTableWidgetItem(line.trimmed()));
             ui->tableWidget->item(rowNum, 0)->setForeground(Qt::blue);
         }
         ui->tableWidget->resizeColumnsToContents();
@@ -124,6 +124,12 @@ void Dialog_deviceList::findDeviceStatuswithRow(const int row){
     MainWindow *ptr = (MainWindow*)parentWidget();
 
     QString imeiString = ui->tableWidget->item(row, 0)->text();
+    if(imeiString.length() != IMEI_LEN)
+    {
+        QMessageBox::information(this, QString("小安提示"),QString("imei 不正确%1\n").arg(imeiString));
+        return;
+    }
+
     QString url = "http://" + ptr->ui->lineEdit_IP->text().toLatin1() +
                   ":"+ptr->ui->lineEdit_port->text().toLatin1() +
                   "/v1/imeiData/" + imeiString;

@@ -36,7 +36,7 @@ void MainWindow::on_pushButton_findDevice_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -143,7 +143,7 @@ void MainWindow::on_pushButton_FindDeviceLog_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -168,7 +168,7 @@ void MainWindow::on_pushButton_GPS_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -203,7 +203,7 @@ void MainWindow::on_pushButton_GSM_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -237,7 +237,7 @@ void MainWindow::on_pushButton_LOG_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -272,7 +272,7 @@ void MainWindow::on_pushButton_SETTING_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -328,7 +328,7 @@ void MainWindow::on_pushButton_BATTERY_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -362,7 +362,7 @@ void MainWindow::on_pushButton_REBOOT_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -380,20 +380,20 @@ void MainWindow::on_pushButton_REBOOT_clicked()
 
 void MainWindow::on_pushButton_DELETE_clicked()
 {
-    QMessageBox message(QMessageBox::Warning, QString("小安提示"),
-                        QString("确定要清除该设备的数据？\r\n%1").arg(ui->lineEdit_IMEI->text()),
-                        QMessageBox::Yes|QMessageBox::No, NULL);
-    if (message.exec()==QMessageBox::No){
-        return;
-    }
-
     if(ui->lineEdit_IMEI->text().isEmpty()){
         QMessageBox::information(this, QString("小安提示"),QString("请输入IMEI号码！\n"));
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
+        return;
+    }
+
+    QMessageBox message(QMessageBox::Warning, QString("小安提示"),
+                        QString("确定要清除该设备的数据？\r\n%1").arg(ui->lineEdit_IMEI->text()),
+                        QMessageBox::Yes|QMessageBox::No, NULL);
+    if (message.exec()==QMessageBox::No){
         return;
     }
 
@@ -496,7 +496,7 @@ void MainWindow::on_pushButton_SERVER_clicked()
         return;
     }
 
-    if(ui->lineEdit_IMEI->text().length() != 15){
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
         QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
         return;
     }
@@ -563,5 +563,70 @@ void MainWindow::on_tableWidget_deviceState_cellDoubleClicked(int row, int colum
         double lat = sl.first().toDouble();
         Dialog_baiduMap baidu(this, lon, lat);
         baidu.exec();
+    }
+}
+
+void MainWindow::on_pushButton_SETMOTOR_clicked()
+{
+    if(ui->lineEdit_IMEI->text().isEmpty()){
+        QMessageBox::information(this, QString("小安提示"),QString("请输入IMEI号码！\n"));
+        return;
+    }
+
+    if(ui->lineEdit_IMEI->text().length() != IMEI_LEN){
+        QMessageBox::information(this, QString("小安提示"),QString("请输入正确的IMEI号码！\n"));
+        return;
+    }
+
+    QMessageBox message(QMessageBox::Warning, QString("小安提示"),
+                        QString("\t%1\r\nReset：注销为电动车\r\nApply：注册为摩托车").arg(ui->lineEdit_IMEI->text()),
+                        QMessageBox::Apply|QMessageBox::Reset|QMessageBox::Cancel, NULL);
+    int res = message.exec();
+    if (res == QMessageBox::Cancel){
+        return;
+    }
+
+    QString url = "http://" + ui->lineEdit_IP->text().toLatin1() +
+            ":"+ui->lineEdit_port->text().toLatin1() +
+            "/v1/motorcycle/" + ui->lineEdit_IMEI->text();
+    qDebug()<< url;
+    QString result;
+
+    if (res == QMessageBox::Reset){
+        QString url = "http://" + ui->lineEdit_IP->text().toLatin1() +
+                ":"+ui->lineEdit_port->text().toLatin1() +
+                "/v1/motorcycle/" + ui->lineEdit_IMEI->text();
+        result = http_operate::instance().httpOperarte(url, NULL, "DELETE", this);
+    }else{
+        QString url = "http://" + ui->lineEdit_IP->text().toLatin1() +
+                ":"+ui->lineEdit_port->text().toLatin1() +
+                "/v1/motorcycle";
+        QString data = QString("{\"imei\":\"%1\"}").arg(ui->lineEdit_IMEI->text());
+        result = http_operate::instance().httpOperarte(url, data, "POST", this);
+    }
+
+    if(result.isEmpty()){
+        return;
+    }
+    qDebug()<<result;
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(result.toLatin1());
+    if( jsonDocument.isNull() ){
+        qDebug()<< "please check the string "<< result;
+        return;
+    }
+    QJsonObject object = jsonDocument.object();
+    QJsonValue code = object.take("code");
+    if(code.toInt() != 0){
+        if (res == QMessageBox::Reset){
+            QMessageBox::information(this, QString("小安提示"),QString("注销失败\n"));
+        }else{
+            QMessageBox::information(this, QString("小安提示"),QString("注册失败\n"));
+        }
+    }else if (res == QMessageBox::Reset){
+        QMessageBox::information(this, QString("小安提示"),QString("注销成功\n"));
+
+    }else{
+        QMessageBox::information(this, QString("小安提示"),QString("注册成功\n"));
+
     }
 }
